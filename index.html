@@ -661,14 +661,113 @@
       transform: none;
     }
 
+    /* ─── HERO FLOATING PHOTOS ──────────────────────────────── */
+    .hero-photo {
+      position: absolute;
+      border-radius: 14px;
+      object-fit: cover;
+      box-shadow: 0 16px 40px rgba(44,38,32,0.18), 0 0 0 3px rgba(255,255,255,0.85);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .hero-photo-1 {
+      width: 108px; height: 138px;
+      top: 6%; right: -6%;
+      transform: rotate(3.5deg);
+      animation: float-a 7s ease-in-out infinite;
+    }
+    .hero-photo-2 {
+      width: 90px; height: 115px;
+      bottom: 10%; left: -4%;
+      transform: rotate(-2.5deg);
+      animation: float-b 8s ease-in-out infinite;
+    }
+    @keyframes float-a {
+      0%,100% { transform: rotate(3.5deg) translateY(0); }
+      50%      { transform: rotate(3.5deg) translateY(-9px); }
+    }
+    @keyframes float-b {
+      0%,100% { transform: rotate(-2.5deg) translateY(0); }
+      50%      { transform: rotate(-2.5deg) translateY(-7px); }
+    }
+
+    /* ─── IMAGE STRIP ────────────────────────────────────────── */
+    .img-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      height: 400px;
+    }
+    .img-strip-item {
+      overflow: hidden;
+      position: relative;
+    }
+    .img-strip-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.65s ease;
+    }
+    .img-strip-item:hover img { transform: scale(1.06); }
+    .img-strip-item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(250,247,242,0.06) 0%,
+        transparent 40%,
+        rgba(44,38,32,0.12) 100%
+      );
+      pointer-events: none;
+    }
+
+    /* ─── STEP CARD IMAGE ────────────────────────────────────── */
+    .step-img {
+      width: 100%; height: 175px;
+      object-fit: cover;
+      border-radius: 14px;
+      margin-bottom: 22px;
+      display: block;
+    }
+
+    /* ─── PROOF GRID ─────────────────────────────────────────── */
+    #proof { text-align: left; }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .proof-content { }
+    .proof-portrait {
+      border-radius: 28px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      position: relative;
+      box-shadow: 0 24px 64px rgba(44,38,32,0.14);
+    }
+    .proof-portrait img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+    }
+    .proof-portrait::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg,
+        transparent 55%,
+        rgba(44,38,32,0.08) 100%
+      );
+    }
+
     /* ─── RESPONSIVE ─────────────────────────────────────────── */
     @media (max-width: 920px) {
       .hero-grid, .solution-grid, .why-grid {
         grid-template-columns: 1fr;
         gap: 52px;
       }
-      .steps-grid { grid-template-columns: 1fr; }
+      .steps-grid  { grid-template-columns: 1fr; }
       .phone-wrap  { order: -1; }
+      .img-strip   { grid-template-columns: repeat(3, 1fr); height: 280px; }
+      .proof-grid  { grid-template-columns: 1fr; gap: 36px; }
+      .hero-photo-1, .hero-photo-2 { display: none; }
     }
     @media (max-width: 620px) {
       .section       { padding: 72px 0; }
@@ -676,6 +775,8 @@
       .btn           { text-align: center; }
       .footer-contact { align-items: flex-start; }
       .footer-inner  { flex-direction: column; }
+      .img-strip     { grid-template-columns: repeat(2, 1fr); height: 320px; }
+      .img-strip-item:last-child { display: none; }
     }
   </style>
 </head>
@@ -708,8 +809,18 @@
         </div>
       </div>
 
-      <!-- ── Phone Mockup ── -->
+      <!-- ── Phone Mockup + floating editorial photos ── -->
       <div class="phone-wrap fade-up" style="transition-delay:0.18s">
+        <img
+          src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=220&h=280&q=80"
+          alt="Editorial beauty"
+          class="hero-photo hero-photo-1"
+          loading="lazy">
+        <img
+          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=180&h=230&q=80"
+          alt="Beauty portrait"
+          class="hero-photo hero-photo-2"
+          loading="lazy">
         <div class="phone-aura"></div>
         <div class="phone">
           <div class="phone-screen">
@@ -778,6 +889,28 @@
     </div>
   </div>
 </section>
+
+<!-- ═══════════════ IMAGE STRIP ═══════════════ -->
+<div class="img-strip" aria-hidden="true">
+  <div class="img-strip-item">
+    <img
+      src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=500&q=85"
+      alt="Beauty editorial"
+      loading="lazy">
+  </div>
+  <div class="img-strip-item">
+    <img
+      src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&h=500&q=85"
+      alt="Makeup products"
+      loading="lazy">
+  </div>
+  <div class="img-strip-item">
+    <img
+      src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=700&h=500&q=85"
+      alt="Personalized beauty"
+      loading="lazy">
+  </div>
+</div>
 
 <!-- ═══════════════ SOLUTION ═══════════════ -->
 <section id="solution" class="section">
@@ -857,16 +990,31 @@
     </div>
     <div class="steps-grid">
       <div class="step-card fade-up">
+        <img
+          src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=600&h=350&q=85"
+          alt="Discover beauty looks"
+          class="step-img"
+          loading="lazy">
         <div class="step-num">01</div>
         <h3>Discover</h3>
         <p>Browse creator-inspired looks and try them on your face in real time. See exactly what works for you — before you commit to anything.</p>
       </div>
       <div class="step-card fade-up" style="transition-delay:0.1s">
+        <img
+          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&h=350&q=85"
+          alt="Personalized guidance"
+          class="step-img"
+          loading="lazy">
         <div class="step-num">02</div>
         <h3>Personalize</h3>
         <p>Receive product recommendations and techniques tailored to your unique features, skin type, and experience level.</p>
       </div>
       <div class="step-card fade-up" style="transition-delay:0.2s">
+        <img
+          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=350&q=85"
+          alt="Execute your look"
+          class="step-img"
+          loading="lazy">
         <div class="step-num">03</div>
         <h3>Execute</h3>
         <p>Follow adaptive, step-by-step guidance that adjusts in real time as you work. No more guessing. Just results.</p>
@@ -926,17 +1074,29 @@
 <!-- ═══════════════ SOCIAL PROOF ═══════════════ -->
 <section id="proof" class="section">
   <div class="container">
-    <div class="proof-inner fade-up">
-      <span class="eyebrow">Designed for real people</span>
-      <h2>Not for professionals.<br>For everyone.</h2>
-      <div class="divider divider-center"></div>
-      <p class="proof-quote">
-        "Whether you're just starting out or refining your routine —
-        iYOUnic helps you get results you can trust."
-      </p>
-      <a href="#waitlist" class="btn btn-outline" style="margin-top:8px">
-        Be Among the First
-      </a>
+    <div class="proof-grid fade-up">
+
+      <div class="proof-portrait">
+        <img
+          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=900&q=85"
+          alt="Beauty portrait"
+          loading="lazy">
+      </div>
+
+      <div class="proof-content">
+        <span class="eyebrow">Designed for real people</span>
+        <h2>Not for professionals.<br>For everyone.</h2>
+        <div class="divider"></div>
+        <p class="proof-quote" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.4rem,3vw,2rem); font-weight:300; line-height:1.55; color:var(--espresso); margin:0 0 28px">
+          "Whether you're just starting out or refining your routine —
+          iYOUnic helps you get results you can trust."
+        </p>
+        <p style="margin-bottom:32px">Early access opening soon. Be among the first to experience beauty guidance built for you.</p>
+        <a href="#waitlist" class="btn btn-outline">
+          Be Among the First
+        </a>
+      </div>
+
     </div>
   </div>
 </section>
