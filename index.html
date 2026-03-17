@@ -809,18 +809,8 @@
         </div>
       </div>
 
-      <!-- ── Phone Mockup + floating editorial photos ── -->
+      <!-- ── Phone Mockup ── -->
       <div class="phone-wrap fade-up" style="transition-delay:0.18s">
-        <img
-          src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=220&h=280&q=80"
-          alt="Editorial beauty"
-          class="hero-photo hero-photo-1"
-          loading="lazy">
-        <img
-          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=180&h=230&q=80"
-          alt="Beauty portrait"
-          class="hero-photo hero-photo-2"
-          loading="lazy">
         <div class="phone-aura"></div>
         <div class="phone">
           <div class="phone-screen">
@@ -894,20 +884,20 @@
 <div class="img-strip" aria-hidden="true">
   <div class="img-strip-item">
     <img
-      src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=500&q=85"
-      alt="Beauty editorial"
+      src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
+      alt="Editorial beauty portrait"
       loading="lazy">
   </div>
   <div class="img-strip-item">
     <img
-      src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&h=500&q=85"
-      alt="Makeup products"
+      src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
+      alt="Luxury lip gloss collection"
       loading="lazy">
   </div>
   <div class="img-strip-item">
     <img
-      src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=700&h=500&q=85"
-      alt="Personalized beauty"
+      src="https://images.pexels.com/photos/2681753/pexels-photo-2681753.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
+      alt="Glamour editorial portrait"
       loading="lazy">
   </div>
 </div>
@@ -991,8 +981,8 @@
     <div class="steps-grid">
       <div class="step-card fade-up">
         <img
-          src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?auto=format&fit=crop&w=600&h=350&q=85"
-          alt="Discover beauty looks"
+          src="https://images.pexels.com/photos/3373744/pexels-photo-3373744.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
+          alt="Discover looks — lip color swatches"
           class="step-img"
           loading="lazy">
         <div class="step-num">01</div>
@@ -1001,8 +991,8 @@
       </div>
       <div class="step-card fade-up" style="transition-delay:0.1s">
         <img
-          src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=600&h=350&q=85"
-          alt="Personalized guidance"
+          src="https://images.pexels.com/photos/3373743/pexels-photo-3373743.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
+          alt="Personalized to your features"
           class="step-img"
           loading="lazy">
         <div class="step-num">02</div>
@@ -1011,8 +1001,8 @@
       </div>
       <div class="step-card fade-up" style="transition-delay:0.2s">
         <img
-          src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=600&h=350&q=85"
-          alt="Execute your look"
+          src="https://images.pexels.com/photos/3373738/pexels-photo-3373738.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
+          alt="Luxury makeup products"
           class="step-img"
           loading="lazy">
         <div class="step-num">03</div>
@@ -1072,32 +1062,45 @@
 </section>
 
 <!-- ═══════════════ SOCIAL PROOF ═══════════════ -->
-<section id="proof" class="section">
+<section id="proof" class="section" style="background:var(--ivory); text-align:center;">
   <div class="container">
-    <div class="proof-grid fade-up">
 
-      <div class="proof-portrait">
-        <img
-          src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=700&h=900&q=85"
-          alt="Beauty portrait"
-          loading="lazy">
+    <!-- Full-width editorial image -->
+    <div class="proof-banner fade-up" style="
+      border-radius: 28px;
+      overflow: hidden;
+      margin-bottom: 64px;
+      height: 480px;
+      position: relative;
+    ">
+      <img
+        src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1400&h=600&dpr=2"
+        alt="Editorial beauty portrait"
+        loading="lazy"
+        style="width:100%; height:100%; object-fit:cover; object-position: center 20%; display:block;">
+      <div style="
+        position:absolute; inset:0;
+        background: linear-gradient(to right, rgba(44,38,32,0.55) 0%, rgba(44,38,32,0.1) 50%, transparent 100%);
+      "></div>
+      <div style="
+        position:absolute; inset:0;
+        display:flex; align-items:center;
+        padding: 0 64px;
+      ">
+        <div style="max-width: 520px; text-align:left;">
+          <span class="eyebrow" style="color: rgba(232,209,209,0.85);">Designed for real people</span>
+          <h2 style="color:var(--ivory); margin-bottom:16px; font-size:clamp(2rem,4vw,3rem);">
+            Not for professionals.<br>For everyone.
+          </h2>
+          <p style="color:rgba(250,247,242,0.75); font-size:1.05rem; margin-bottom:28px; max-width:400px;">
+            Whether you're just starting out or refining your routine —
+            iYOUnic helps you get results you can trust.
+          </p>
+          <a href="#waitlist" class="btn btn-light">Be Among the First</a>
+        </div>
       </div>
-
-      <div class="proof-content">
-        <span class="eyebrow">Designed for real people</span>
-        <h2>Not for professionals.<br>For everyone.</h2>
-        <div class="divider"></div>
-        <p class="proof-quote" style="font-family:'Cormorant Garamond',serif; font-style:italic; font-size:clamp(1.4rem,3vw,2rem); font-weight:300; line-height:1.55; color:var(--espresso); margin:0 0 28px">
-          "Whether you're just starting out or refining your routine —
-          iYOUnic helps you get results you can trust."
-        </p>
-        <p style="margin-bottom:32px">Early access opening soon. Be among the first to experience beauty guidance built for you.</p>
-        <a href="#waitlist" class="btn btn-outline">
-          Be Among the First
-        </a>
-      </div>
-
     </div>
+
   </div>
 </section>
 
