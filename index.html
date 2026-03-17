@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iYOUnic — Personalized Beauty, Finally.</title>
+  <meta name="description" content="iYOUnic turns beauty inspiration into a personalized, guided experience. Try on looks on your face. Get tailored products. Follow real-time guidance. Join the waitlist.">
+  <meta property="og:title" content="iYOUnic — Personalized Beauty, Finally.">
+  <meta property="og:description" content="Recreate any makeup look on your face — with guidance that actually works.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tally embed script — uncomment after adding your form ID below -->
+  <!-- <script async src="https://tally.so/widgets/embed.js"></script> -->
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --ivory:         #FAF7F2;
+      --ivory-2:       #F2EDE6;
+      --ivory-3:       #E8E1D8;
+      --espresso:      #2C2620;
+      --espresso-2:    #1A1210;
+      --muted:         #6B5E56;
+      --mauve:         #C4A4A4;
+      --mauve-light:   #EDD9D9;
+      --mauve-mid:     #B89090;
+      --mauve-dark:    #9E7878;
+      --champagne:     #E8D4C0;
+      --champagne-2:   #F5EDE4;
+      --glow:          rgba(232, 212, 192, 0.45);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ivory);
+      color: var(--espresso);
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── TYPE ───────────────────────────────────────────────── */
+    h1, h2, h3, .serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    h1  { font-size: clamp(2.6rem, 5.5vw, 4.8rem); }
+    h2  { font-size: clamp(2rem, 4vw, 3.2rem); }
+    h3  { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+    p   { font-size: clamp(0.9rem, 1.4vw, 1.05rem); color: var(--muted); }
+
+    /* ─── LAYOUT ─────────────────────────────────────────────── */
+    .container  { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+    .section    { padding: 100px 0; }
+
+    /* ─── EYEBROW ────────────────────────────────────────────── */
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mauve-dark);
+      margin-bottom: 20px;
+    }
+    .eyebrow-pill {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mauve-dark);
+      margin-bottom: 24px;
+      padding: 6px 18px;
+      background: var(--mauve-light);
+      border-radius: 50px;
+    }
+
+    /* ─── DIVIDER ────────────────────────────────────────────── */
+    .divider {
+      width: 44px;
+      height: 1px;
+      background: var(--mauve);
+      margin: 24px 0;
+    }
+    .divider-center { margin: 24px auto; }
+
+    /* ─── BUTTONS ────────────────────────────────────────────── */
+    .btn {
+      display: inline-block;
+      padding: 14px 38px;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.28s ease;
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--espresso);
+      color: var(--ivory);
+      border: 1.5px solid var(--espresso);
+    }
+    .btn-primary:hover {
+      background: var(--mauve-dark);
+      border-color: var(--mauve-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(44,38,32,0.16);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--espresso);
+      border: 1.5px solid var(--espresso);
+    }
+    .btn-outline:hover {
+      background: var(--espresso);
+      color: var(--ivory);
+      transform: translateY(-2px);
+    }
+    .btn-light {
+      background: rgba(250,247,242,0.12);
+      color: var(--ivory);
+      border: 1.5px solid rgba(250,247,242,0.3);
+      backdrop-filter: blur(8px);
+    }
+    .btn-light:hover {
+      background: rgba(250,247,242,0.22);
+      transform: translateY(-2px);
+    }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      padding: 18px 0;
+      background: rgba(250,247,242,0.82);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      border-bottom-color: var(--ivory-3);
+      box-shadow: 0 2px 20px rgba(44,38,32,0.05);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .wordmark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.55rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--espresso);
+    }
+    .wordmark em { font-style: italic; color: var(--mauve-dark); }
+    .nav-cta { padding: 9px 24px; font-size: 0.72rem; }
+
+    /* ─── HERO ───────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 88px;
+      overflow: hidden;
+      position: relative;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -5%; right: -8%;
+      width: 65%; height: 85%;
+      background: radial-gradient(ellipse at 60% 40%, var(--champagne) 0%, var(--mauve-light) 35%, transparent 68%);
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%; left: -5%;
+      width: 40%; height: 50%;
+      background: radial-gradient(ellipse, var(--champagne-2) 0%, transparent 70%);
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 460px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ─── PHONE MOCKUP ───────────────────────────────────────── */
+    .phone-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .phone-aura {
+      position: absolute;
+      inset: -10%;
+      background: radial-gradient(ellipse at center, var(--champagne) 0%, var(--mauve-light) 40%, transparent 70%);
+      opacity: 0.6;
+      filter: blur(48px);
+      border-radius: 50%;
+    }
+    .phone {
+      position: relative;
+      width: 252px;
+      height: 508px;
+      background: linear-gradient(150deg, #2C2620 0%, #181210 100%);
+      border-radius: 44px;
+      border: 7px solid #3A312C;
+      box-shadow:
+        0 40px 100px rgba(44,38,32,0.28),
+        0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 1px 2px rgba(255,255,255,0.07);
+      overflow: hidden;
+    }
+    /* Notch */
+    .phone::before {
+      content: '';
+      position: absolute;
+      top: 12px; left: 50%;
+      transform: translateX(-50%);
+      width: 80px; height: 22px;
+      background: #181210;
+      border-radius: 12px;
+      z-index: 10;
+    }
+    .phone-screen {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(170deg,
+        #D8BCA8 0%,
+        #C9A88E 25%,
+        #BFA082 55%,
+        #CBB09A 80%,
+        #D8BCA8 100%
+      );
+      position: relative;
+      overflow: hidden;
+    }
+    /* Subtle camera grid */
+    .phone-screen::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 22px 22px;
+      pointer-events: none;
+    }
+    /* Face glow */
+    .face-glow {
+      position: absolute;
+      top: 48%; left: 50%;
+      transform: translate(-50%, -55%);
+      width: 140px; height: 170px;
+      background: radial-gradient(ellipse at 50% 38%,
+        rgba(240,210,180,0.85) 20%,
+        rgba(220,185,155,0.6) 55%,
+        transparent 78%
+      );
+      border-radius: 50% 50% 45% 45%;
+    }
+    /* AR face map SVG */
+    .face-map {
+      position: absolute;
+      top: 48%; left: 50%;
+      transform: translate(-50%, -55%);
+      width: 155px; height: 185px;
+    }
+    /* Floating UI chips */
+    .chip {
+      position: absolute;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 12px;
+      padding: 8px 13px;
+      font-size: 0.63rem;
+      font-weight: 500;
+      color: var(--espresso);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .chip-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--mauve-dark);
+      flex-shrink: 0;
+    }
+    .chip-top {
+      top: 18%;
+      left: -14%;
+    }
+    .chip-mid {
+      bottom: 30%;
+      right: -18%;
+    }
+    .chip-step {
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,18,16,0.88);
+      color: var(--ivory);
+      border-radius: 10px;
+      padding: 8px 15px;
+      font-size: 0.61rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+    .chip-step .step-label { opacity: 0.5; font-weight: 300; font-size: 0.55rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* ─── PROBLEM ────────────────────────────────────────────── */
+    #problem { background: var(--ivory-2); }
+    .problem-center {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .problem-copy {
+      margin-top: 28px;
+      font-size: 1.15rem;
+      line-height: 2.1;
+      color: var(--muted);
+    }
+    .problem-copy strong { color: var(--espresso); font-weight: 400; }
+
+    /* ─── SOLUTION ───────────────────────────────────────────── */
+    #solution {
+      background: var(--espresso);
+      color: var(--ivory);
+    }
+    #solution p { color: rgba(250,247,242,0.6); }
+    #solution .eyebrow { color: var(--mauve); }
+    #solution .divider { background: var(--mauve-mid); }
+    .solution-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .feature-list {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .feature-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .feature-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: rgba(196,164,164,0.18);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .feature-text h4 {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ivory);
+      margin-bottom: 3px;
+    }
+    .feature-text p { font-size: 0.82rem; margin: 0; }
+    /* Mirror card visual */
+    .mirror-card {
+      width: 285px;
+      height: 390px;
+      background: linear-gradient(140deg,
+        rgba(232,212,192,0.12) 0%,
+        rgba(196,164,164,0.08) 60%,
+        rgba(232,212,192,0.06) 100%
+      );
+      border: 1px solid rgba(232,212,192,0.16);
+      border-radius: 32px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 0 80px rgba(196,164,164,0.12),
+        0 20px 60px rgba(0,0,0,0.25),
+        inset 0 1px 1px rgba(255,255,255,0.08);
+    }
+    .mirror-card::before {
+      content: '';
+      position: absolute;
+      top: -25%; left: -20%;
+      width: 70%; height: 55%;
+      background: radial-gradient(ellipse, rgba(232,212,192,0.18) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .mirror-steps {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 30px 28px; gap: 10px;
+    }
+    .mirror-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(250,247,242,0.35);
+      margin-bottom: 6px;
+    }
+    .mirror-step {
+      display: flex; align-items: center; gap: 12px;
+      padding: 11px 15px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+    }
+    .mirror-step.active {
+      background: rgba(196,164,164,0.12);
+      border-color: rgba(196,164,164,0.25);
+    }
+    .mirror-step-n {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: rgba(196,164,164,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 500; color: var(--mauve);
+      flex-shrink: 0;
+    }
+    .mirror-step.active .mirror-step-n {
+      background: rgba(196,164,164,0.45);
+      color: var(--ivory);
+    }
+    .mirror-step-t {
+      font-size: 0.75rem;
+      color: rgba(250,247,242,0.65);
+    }
+    .mirror-step.active .mirror-step-t { color: var(--mauve); }
+    .mirror-step.dim { opacity: 0.35; }
+
+    /* ─── HOW IT WORKS ───────────────────────────────────────── */
+    #how { background: var(--ivory); }
+    .section-header { text-align: center; margin-bottom: 64px; }
+    .section-header p { max-width: 480px; margin: 0 auto; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .step-card {
+      background: var(--ivory-2);
+      border: 1px solid var(--ivory-3);
+      border-radius: 24px;
+      padding: 40px 32px;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 16px 48px rgba(44,38,32,0.09);
+      border-color: var(--mauve-light);
+    }
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--mauve-light);
+      margin-bottom: 18px;
+    }
+    .step-card h3 { margin-bottom: 12px; }
+    .step-card p { font-size: 0.88rem; }
+
+    /* ─── WHY ────────────────────────────────────────────────── */
+    #why { background: var(--ivory-2); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .why-bullets {
+      margin-top: 28px;
+      display: flex; flex-direction: column; gap: 13px;
+    }
+    .why-bullet {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.92rem;
+      color: var(--espresso);
+    }
+    .why-bullet::before {
+      content: '';
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--mauve-dark);
+      flex-shrink: 0;
+    }
+    .compare-stack {
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .compare-card {
+      background: var(--ivory);
+      border: 1px solid var(--ivory-3);
+      border-radius: 16px;
+      padding: 18px 22px;
+      display: flex; align-items: center; gap: 16px;
+      box-shadow: 0 2px 12px rgba(44,38,32,0.04);
+      transition: transform 0.25s;
+    }
+    .compare-card:hover { transform: translateX(4px); }
+    .compare-icon { font-size: 1.4rem; flex-shrink: 0; }
+    .compare-text h4 { font-size: 0.85rem; font-weight: 500; margin-bottom: 3px; }
+    .compare-text p  { font-size: 0.78rem; color: var(--muted); margin: 0; }
+    .compare-card.hero-card {
+      background: var(--espresso);
+      border-color: var(--espresso);
+      box-shadow: 0 8px 32px rgba(44,38,32,0.18);
+    }
+    .compare-card.hero-card h4 { color: var(--ivory); }
+    .compare-card.hero-card p  { color: rgba(250,247,242,0.55); }
+
+    /* ─── PROOF ──────────────────────────────────────────────── */
+    #proof {
+      background: var(--ivory);
+      text-align: center;
+    }
+    .proof-inner { max-width: 620px; margin: 0 auto; }
+    .proof-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 3vw, 2.1rem);
+      font-weight: 300;
+      line-height: 1.55;
+      color: var(--espresso);
+      margin: 28px 0;
+    }
+
+    /* ─── WAITLIST ───────────────────────────────────────────── */
+    #waitlist {
+      background: linear-gradient(170deg, var(--ivory-2) 0%, var(--ivory) 100%);
+    }
+    .waitlist-inner {
+      max-width: 660px; margin: 0 auto; text-align: center;
+    }
+    .waitlist-inner h2 { margin-bottom: 14px; }
+    .waitlist-inner > p { margin-bottom: 44px; }
+    .form-shell {
+      background: var(--ivory);
+      border: 1px solid var(--ivory-3);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(44,38,32,0.07);
+      text-align: left;
+    }
+    /* Tally iframe will fill this container */
+    .form-shell iframe {
+      display: block;
+      width: 100%;
+      border: none;
+    }
+    /* Fallback placeholder shown until Tally is configured */
+    .form-placeholder {
+      padding: 48px 40px;
+      text-align: center;
+      color: var(--muted);
+    }
+    .form-placeholder p { font-size: 0.85rem; }
+    .form-placeholder code {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--ivory-2);
+      border: 1px solid var(--ivory-3);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 0.78rem;
+      color: var(--mauve-dark);
+      font-family: monospace;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--espresso-2);
+      color: var(--ivory);
+      padding: 52px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .footer-brand .wordmark { font-size: 1.45rem; }
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: rgba(250,247,242,0.38);
+      margin-top: 6px;
+      font-weight: 300;
+      letter-spacing: 0.06em;
+    }
+    .footer-contact {
+      font-size: 0.78rem;
+      color: rgba(250,247,242,0.38);
+      display: flex; flex-direction: column; gap: 6px;
+      align-items: flex-end;
+    }
+    .footer-contact a { transition: color 0.2s; }
+    .footer-contact a:hover { color: var(--mauve); }
+    .footer-legal {
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 28px;
+      padding-top: 20px;
+      font-size: 0.7rem;
+      color: rgba(250,247,242,0.2);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ─── ANIMATION ──────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.72s ease, transform 0.72s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 920px) {
+      .hero-grid, .solution-grid, .why-grid {
+        grid-template-columns: 1fr;
+        gap: 52px;
+      }
+      .steps-grid { grid-template-columns: 1fr; }
+      .phone-wrap  { order: -1; }
+    }
+    @media (max-width: 620px) {
+      .section       { padding: 72px 0; }
+      .hero-actions  { flex-direction: column; align-items: stretch; }
+      .btn           { text-align: center; }
+      .footer-contact { align-items: flex-start; }
+      .footer-inner  { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="wordmark">i<em>YOU</em>nic</a>
+    <a href="#waitlist" class="btn btn-primary nav-cta">Join the Waitlist</a>
+  </div>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="hero" class="section">
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="fade-up">
+        <span class="eyebrow-pill">Beauty tech · Personalized · For everyone</span>
+        <h1>Recreate any makeup look on <em style="font-style:italic; color:var(--mauve-dark)">your</em> face — with guidance that actually works.</h1>
+        <p class="hero-sub" style="margin-top:22px">
+          See a look. Try it on your face.<br>
+          Get personalized steps and products to recreate it —
+          confidently, at home.
+        </p>
+        <div class="hero-actions">
+          <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
+          <a href="#how"      class="btn btn-outline">See How It Works</a>
+        </div>
+      </div>
+
+      <!-- ── Phone Mockup ── -->
+      <div class="phone-wrap fade-up" style="transition-delay:0.18s">
+        <div class="phone-aura"></div>
+        <div class="phone">
+          <div class="phone-screen">
+            <div class="face-glow"></div>
+            <!-- AR face-mapping overlay -->
+            <svg class="face-map" viewBox="0 0 155 185" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer face oval -->
+              <ellipse cx="77" cy="95" rx="64" ry="80" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-dasharray="5 5"/>
+              <!-- Eye L -->
+              <ellipse cx="52" cy="78" rx="16" ry="8" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
+              <!-- Eye R -->
+              <ellipse cx="103" cy="78" rx="16" ry="8" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
+              <!-- Brow L -->
+              <path d="M36 66 Q52 60 68 64" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <!-- Brow R -->
+              <path d="M87 64 Q103 60 119 66" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+              <!-- Nose bridge -->
+              <path d="M72 65 L70 96 Q77 104 84 96 L82 65" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
+              <!-- Contour L -->
+              <path d="M24 98 Q36 114 52 108" stroke="rgba(196,164,164,0.7)" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Contour R -->
+              <path d="M131 98 Q119 114 103 108" stroke="rgba(196,164,164,0.7)" stroke-width="1.8" stroke-linecap="round"/>
+              <!-- Lips -->
+              <path d="M58 128 Q67 134 77 132 Q87 134 96 128" stroke="rgba(196,164,164,0.75)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+              <path d="M63 128 Q77 124 91 128" stroke="rgba(196,164,164,0.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+            </svg>
+            <!-- Floating chips -->
+            <div class="chip chip-top">
+              <span class="chip-dot"></span>
+              <span>Soft Glam Look</span>
+            </div>
+            <div class="chip chip-mid">
+              <span>✦</span>
+              <span>Matched to you</span>
+            </div>
+            <div class="chip chip-step">
+              <span class="step-label">Current step</span>
+              <span>Step 3 — Blend contour</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PROBLEM ═══════════════ -->
+<section id="problem" class="section">
+  <div class="container">
+    <div class="problem-center fade-up">
+      <span class="eyebrow">The problem</span>
+      <h2>
+        You see the look you desire.<br>
+        <em style="font-style:italic; color:var(--mauve-dark)">But you can't wear it.</em>
+      </h2>
+      <div class="divider divider-center"></div>
+      <p class="problem-copy">
+        You buy the same products.<br>
+        You follow the same tutorial.<br>
+        But somehow… <strong>it still doesn't look right.</strong><br><br>
+        Because makeup isn't just what you use —<br>
+        it's how it works <strong>on your face.</strong><br><br>
+        And today, that part is missing.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SOLUTION ═══════════════ -->
+<section id="solution" class="section">
+  <div class="container">
+    <div class="solution-grid">
+
+      <div class="fade-up">
+        <span class="eyebrow">The solution</span>
+        <h2 style="color:var(--ivory)">Meet iYOUnic</h2>
+        <div class="divider"></div>
+        <p>iYOUnic turns beauty inspiration into a personalized, guided experience. Using your camera, you can:</p>
+        <div class="feature-list">
+          <div class="feature-row">
+            <div class="feature-icon">🪞</div>
+            <div class="feature-text">
+              <h4>Try on looks in real time</h4>
+              <p>See exactly how any look works on your face — before you touch a product.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">✦</div>
+            <div class="feature-text">
+              <h4>Get recommendations tailored to you</h4>
+              <p>Products and techniques matched to your features, skin, and skill level.</p>
+            </div>
+          </div>
+          <div class="feature-row">
+            <div class="feature-icon">▸</div>
+            <div class="feature-text">
+              <h4>Follow adaptive, step-by-step guidance</h4>
+              <p>Real-time coaching that adjusts as you go. So you don't just watch beauty — you achieve it.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up" style="display:flex;justify-content:center;transition-delay:0.15s">
+        <div class="mirror-card">
+          <div class="mirror-steps">
+            <div class="mirror-label">Your personalized session</div>
+            <div class="mirror-step">
+              <div class="mirror-step-n">1</div>
+              <div class="mirror-step-t">Selecting: Soft Glam Editorial</div>
+            </div>
+            <div class="mirror-step">
+              <div class="mirror-step-n">2</div>
+              <div class="mirror-step-t">Analyzing skin tone &amp; features</div>
+            </div>
+            <div class="mirror-step active">
+              <div class="mirror-step-n">3</div>
+              <div class="mirror-step-t">Blending contour — in progress</div>
+            </div>
+            <div class="mirror-step dim">
+              <div class="mirror-step-n">4</div>
+              <div class="mirror-step-t">Highlight placement</div>
+            </div>
+            <div class="mirror-step dim">
+              <div class="mirror-step-n">5</div>
+              <div class="mirror-step-t">Final look review</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HOW IT WORKS ═══════════════ -->
+<section id="how" class="section">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps to your look</h2>
+      <div class="divider divider-center"></div>
+      <p>From inspiration to execution — effortlessly.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
+        <h3>Discover</h3>
+        <p>Browse creator-inspired looks and try them on your face in real time. See exactly what works for you — before you commit to anything.</p>
+      </div>
+      <div class="step-card fade-up" style="transition-delay:0.1s">
+        <div class="step-num">02</div>
+        <h3>Personalize</h3>
+        <p>Receive product recommendations and techniques tailored to your unique features, skin type, and experience level.</p>
+      </div>
+      <div class="step-card fade-up" style="transition-delay:0.2s">
+        <div class="step-num">03</div>
+        <h3>Execute</h3>
+        <p>Follow adaptive, step-by-step guidance that adjusts in real time as you work. No more guessing. Just results.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHY ═══════════════ -->
+<section id="why" class="section">
+  <div class="container">
+    <div class="why-grid">
+
+      <div class="fade-up">
+        <span class="eyebrow">Why it's different</span>
+        <h2>This isn't another tutorial.<br>
+          <em style="font-style:italic; color:var(--mauve-dark)">It's guidance built for you.</em>
+        </h2>
+        <div class="divider"></div>
+        <p>Most beauty tools show you what looks good. iYOUnic shows you how to get there — based on your face, your products, and your skill level.</p>
+        <p style="margin-top:12px">Because even with the right tools, results aren't guaranteed… unless the guidance is personalized.</p>
+        <div class="why-bullets">
+          <div class="why-bullet">Adapts to your face shape and bone structure</div>
+          <div class="why-bullet">Adjusts to your skin tone and type</div>
+          <div class="why-bullet">Works at your skill level</div>
+        </div>
+      </div>
+
+      <div class="compare-stack fade-up" style="transition-delay:0.15s">
+        <div class="compare-card">
+          <div class="compare-icon">📹</div>
+          <div class="compare-text">
+            <h4>YouTube tutorials</h4>
+            <p>Generic. One-size-fits-all. Filmed on someone else's face.</p>
+          </div>
+        </div>
+        <div class="compare-card">
+          <div class="compare-icon">🪄</div>
+          <div class="compare-text">
+            <h4>Virtual try-on</h4>
+            <p>Shows you the outcome. Doesn't show you how to get there.</p>
+          </div>
+        </div>
+        <div class="compare-card hero-card">
+          <div class="compare-icon">✦</div>
+          <div class="compare-text">
+            <h4>iYOUnic</h4>
+            <p>Personalized guidance, in real time, on your face. Start to finish.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ SOCIAL PROOF ═══════════════ -->
+<section id="proof" class="section">
+  <div class="container">
+    <div class="proof-inner fade-up">
+      <span class="eyebrow">Designed for real people</span>
+      <h2>Not for professionals.<br>For everyone.</h2>
+      <div class="divider divider-center"></div>
+      <p class="proof-quote">
+        "Whether you're just starting out or refining your routine —
+        iYOUnic helps you get results you can trust."
+      </p>
+      <a href="#waitlist" class="btn btn-outline" style="margin-top:8px">
+        Be Among the First
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WAITLIST ═══════════════ -->
+<section id="waitlist" class="section">
+  <div class="container">
+    <div class="waitlist-inner">
+      <span class="eyebrow">Early access</span>
+      <h2>Be the first to experience iYOUnic</h2>
+      <p>Early access. Personalized beauty. Real results.</p>
+
+      <div class="form-shell">
+        <!--
+          ┌─────────────────────────────────────────────────────────────┐
+          │  TALLY FORM SETUP                                           │
+          │                                                             │
+          │  1. Go to tally.so and create a new form with these fields: │
+          │     • First Name (required)                                 │
+          │     • Last Name (required)                                  │
+          │     • Email (required)                                      │
+          │     • Makeup skill level (multiple choice):                 │
+          │         Beginner / Intermediate / Beauty enthusiast         │
+          │     • What best describes your makeup struggles? (text)     │
+          │                                                             │
+          │  2. In Tally, connect to Airtable via Integrations          │
+          │                                                             │
+          │  3. Get your form ID (the code in your Tally URL, e.g.:     │
+          │     tally.so/r/XXXXXXXX → ID is XXXXXXXX)                  │
+          │                                                             │
+          │  4. Replace XXXXXXXX below with your real form ID           │
+          │  5. Uncomment the Tally script tag in <head>                │
+          └─────────────────────────────────────────────────────────────┘
+        -->
+        <iframe
+          data-tally-src="https://tally.so/embed/XXXXXXXX?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+          loading="lazy"
+          width="100%"
+          height="480"
+          frameborder="0"
+          marginheight="0"
+          marginwidth="0"
+          title="Join the iYOUnic Waitlist"
+          style="padding: 8px;"
+        ></iframe>
+        <!-- Fallback for before Tally is configured -->
+        <noscript>
+          <div class="form-placeholder">
+            <p>Our waitlist form requires JavaScript to load.</p>
+          </div>
+        </noscript>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="wordmark">i<em>YOU</em>nic</div>
+        <div class="footer-tagline">Personalized beauty, finally.</div>
+      </div>
+      <div class="footer-contact">
+        <a href="mailto:hello@iyounic.com">hello@iyounic.com</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2025 iYOUnic. All rights reserved.</span>
+      <span>Coming soon.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll shadow
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 24);
+  }, { passive: true });
+
+  // Fade-up on scroll (Intersection Observer)
+  const io = new IntersectionObserver(
+    entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    }),
+    { threshold: 0.08, rootMargin: '0px 0px -48px 0px' }
+  );
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+
+</body>
+</html>
