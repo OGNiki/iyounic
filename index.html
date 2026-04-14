@@ -473,37 +473,121 @@
     .mirror-step.active .mirror-step-t { color: var(--mauve); }
     .mirror-step.dim { opacity: 0.35; }
 
-    /* ─── HOW IT WORKS ───────────────────────────────────────── */
-    #how { background: var(--ivory); }
+    /* ─── HOW IT WORKS (horizontal) ────────────────────────────── */
+    #how { background: var(--ivory); overflow: hidden; }
     .section-header { text-align: center; margin-bottom: 64px; }
     .section-header p { max-width: 480px; margin: 0 auto; }
-    .steps-grid {
+
+    /* Horizontal steps row */
+    .how-steps {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
     }
-    .step-card {
-      background: var(--ivory-2);
-      border: 1px solid var(--ivory-3);
-      border-radius: 24px;
-      padding: 40px 32px;
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    /* Connector line through step nodes */
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 148px;
+      left: calc(12.5% + 12px);
+      right: calc(12.5% + 12px);
+      height: 1px;
+      background: linear-gradient(to right, var(--mauve-light) 0%, var(--mauve) 50%, var(--mauve-light) 100%);
+      z-index: 0;
     }
-    .step-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 16px 48px rgba(44,38,32,0.09);
-      border-color: var(--mauve-light);
+
+    .how-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px;
+      text-align: center;
     }
+
+    /* Phone image area */
+    .how-phones {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    /* Single phone */
+    .how-phones.single .hw-phone {
+      height: 260px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      border-radius: 16px;
+      filter: drop-shadow(0 16px 32px rgba(44,38,32,0.18));
+      position: relative;
+      z-index: 2;
+    }
+    /* Dual phones: overlapping fan */
+    .how-phones.dual {
+      justify-content: center;
+    }
+    .how-phones.dual .hw-phone {
+      height: 230px;
+      width: auto;
+      max-width: 50%;
+      object-fit: contain;
+      position: absolute;
+      bottom: 0;
+      filter: drop-shadow(0 12px 24px rgba(44,38,32,0.16));
+    }
+    .how-phones.dual .hw-phone:first-child {
+      left: 4%;
+      transform: rotate(-5deg) translateY(8px);
+      z-index: 1;
+    }
+    .how-phones.dual .hw-phone:last-child {
+      right: 4%;
+      transform: rotate(4deg) translateY(4px);
+      z-index: 2;
+    }
+
+    /* Step node (circle) */
+    .how-node {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--ivory);
+      border: 2px solid var(--mauve);
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .how-node-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--mauve-dark);
+    }
+    .how-step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mauve-dark);
+      margin-bottom: 8px;
+    }
+    .how-step h3 {
+      font-size: clamp(1.1rem, 2vw, 1.4rem);
+      margin-bottom: 10px;
+    }
+    .how-step p { font-size: 0.82rem; max-width: 200px; }
+
+    /* ─── STEP CARD IMAGE (legacy - kept for reference, not used) ─ */
     .step-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 4.5rem;
-      font-weight: 300;
-      line-height: 1;
-      color: var(--mauve-light);
-      margin-bottom: 18px;
+      font-size: 4.5rem; font-weight: 300; line-height: 1;
+      color: var(--mauve-light); margin-bottom: 18px;
     }
-    .step-card h3 { margin-bottom: 12px; }
-    .step-card p { font-size: 0.88rem; }
 
     /* ─── WHY ────────────────────────────────────────────────── */
     #why { background: var(--ivory-2); }
@@ -650,6 +734,129 @@
       display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
     }
 
+    /* ─── HAMBURGER ──────────────────────────────────────────── */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 300;
+      position: relative;
+      flex-shrink: 0;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--espresso);
+      border-radius: 2px;
+      transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+      transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44,38,32,0.45);
+      z-index: 240;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s;
+    }
+    .nav-overlay.open { opacity: 1; pointer-events: all; }
+
+    .nav-drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(340px, 90vw);
+      height: 100vh;
+      background: var(--ivory);
+      z-index: 250;
+      transform: translateX(100%);
+      transition: transform 0.42s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: -8px 0 60px rgba(44,38,32,0.14);
+      padding: 96px 48px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .nav-drawer.open { transform: translateX(0); }
+    .nav-drawer-link {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      color: var(--espresso);
+      text-decoration: none;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--ivory-3);
+      transition: color 0.2s, padding-left 0.25s;
+      display: block;
+    }
+    .nav-drawer-link:hover { color: var(--mauve-dark); padding-left: 10px; }
+    .nav-drawer-cta { margin-top: 36px; }
+    .nav-drawer-cta .btn { display: block; text-align: center; }
+
+    /* ─── PHONE SLIDESHOW ────────────────────────────────────── */
+    .phone-slideshow {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+    .phone-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
+      opacity: 0;
+      transition: opacity 1.2s ease;
+      pointer-events: none;
+    }
+    .phone-slide.active { opacity: 1; }
+    .slide-badge {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(26,18,16,0.72);
+      color: var(--ivory);
+      font-size: 0.55rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      z-index: 5;
+      white-space: nowrap;
+      transition: opacity 0.4s;
+    }
+    .slide-dots {
+      position: absolute;
+      bottom: 58px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 5;
+    }
+    .slide-dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: all 0.35s;
+    }
+    .slide-dot.active { background: rgba(255,255,255,0.92); transform: scale(1.4); }
+
     /* ─── ANIMATION ──────────────────────────────────────────── */
     .fade-up {
       opacity: 0;
@@ -763,7 +970,11 @@
         grid-template-columns: 1fr;
         gap: 52px;
       }
-      .steps-grid  { grid-template-columns: 1fr; }
+      .how-steps   { grid-template-columns: repeat(2, 1fr); gap: 48px 28px; }
+      .how-steps::before { display: none; }
+      .how-phones { height: 240px; }
+      .how-phones.single .hw-phone { height: 200px; }
+      .how-phones.dual .hw-phone { height: 180px; }
       .phone-wrap  { order: -1; }
       .img-strip   { grid-template-columns: repeat(3, 1fr); height: 280px; }
       .proof-grid  { grid-template-columns: 1fr; gap: 36px; }
@@ -775,8 +986,10 @@
       .btn           { text-align: center; }
       .footer-contact { align-items: flex-start; }
       .footer-inner  { flex-direction: column; }
-      .img-strip     { grid-template-columns: repeat(2, 1fr); height: 320px; }
-      .img-strip-item:last-child { display: none; }
+      .how-steps   { grid-template-columns: 1fr; gap: 52px 0; }
+      .how-phones { height: 220px; }
+      .how-phones.single .hw-phone { height: 180px; }
+      .how-phones.dual .hw-phone { height: 160px; }
     }
   </style>
 </head>
@@ -786,9 +999,25 @@
 <nav id="nav">
   <div class="container nav-inner">
     <a href="#" class="wordmark">i<em>YOU</em>nic</a>
-    <a href="#waitlist" class="btn btn-primary nav-cta">Join the Waitlist</a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </div>
 </nav>
+
+<!-- Nav Overlay & Drawer -->
+<div class="nav-overlay" id="nav-overlay"></div>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <a href="#how"      class="nav-drawer-link">How It Works</a>
+  <a href="#why"      class="nav-drawer-link">Why iYOUnic</a>
+  <a href="#proof"    class="nav-drawer-link">Our Vision</a>
+  <a href="#waitlist" class="nav-drawer-link">Join Waitlist</a>
+  <div class="nav-drawer-cta">
+    <a href="#waitlist" class="btn btn-primary">Get Early Access</a>
+  </div>
+</div>
 
 <!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero" class="section">
@@ -814,41 +1043,28 @@
         <div class="phone-aura"></div>
         <div class="phone">
           <div class="phone-screen">
-            <div class="face-glow"></div>
-            <!-- AR face-mapping overlay -->
-            <svg class="face-map" viewBox="0 0 155 185" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Outer face oval -->
-              <ellipse cx="77" cy="95" rx="64" ry="80" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-dasharray="5 5"/>
-              <!-- Eye L -->
-              <ellipse cx="52" cy="78" rx="16" ry="8" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
-              <!-- Eye R -->
-              <ellipse cx="103" cy="78" rx="16" ry="8" stroke="rgba(255,255,255,0.35)" stroke-width="1.2"/>
-              <!-- Brow L -->
-              <path d="M36 66 Q52 60 68 64" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-              <!-- Brow R -->
-              <path d="M87 64 Q103 60 119 66" stroke="rgba(255,255,255,0.2)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-              <!-- Nose bridge -->
-              <path d="M72 65 L70 96 Q77 104 84 96 L82 65" stroke="rgba(255,255,255,0.18)" stroke-width="1" fill="none"/>
-              <!-- Contour L -->
-              <path d="M24 98 Q36 114 52 108" stroke="rgba(196,164,164,0.7)" stroke-width="1.8" stroke-linecap="round"/>
-              <!-- Contour R -->
-              <path d="M131 98 Q119 114 103 108" stroke="rgba(196,164,164,0.7)" stroke-width="1.8" stroke-linecap="round"/>
-              <!-- Lips -->
-              <path d="M58 128 Q67 134 77 132 Q87 134 96 128" stroke="rgba(196,164,164,0.75)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
-              <path d="M63 128 Q77 124 91 128" stroke="rgba(196,164,164,0.5)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
-            </svg>
+            <!-- Cycling showcase photos -->
+            <div class="phone-slideshow">
+              <img src="showcase-before.png" class="phone-slide active" alt="Before — bare face" loading="eager">
+              <img src="showcase-during.png" class="phone-slide" alt="During — contouring in progress" loading="lazy">
+              <img src="showcase-after.png"  class="phone-slide" alt="After — finished look" loading="lazy">
+            </div>
+            <!-- Step badge -->
+            <div class="slide-badge" id="slide-badge">Before</div>
+            <!-- Slide indicators -->
+            <div class="slide-dots">
+              <div class="slide-dot active"></div>
+              <div class="slide-dot"></div>
+              <div class="slide-dot"></div>
+            </div>
             <!-- Floating chips -->
             <div class="chip chip-top">
               <span class="chip-dot"></span>
               <span>Soft Glam Look</span>
             </div>
-            <div class="chip chip-mid">
-              <span>✦</span>
-              <span>Matched to you</span>
-            </div>
-            <div class="chip chip-step">
-              <span class="step-label">Current step</span>
-              <span>Step 3 — Blend contour</span>
+            <div class="chip chip-step" id="chip-step-ui">
+              <span class="step-label" id="chip-step-label">iYOUnic Guide</span>
+              <span id="chip-step-text">Scan your face</span>
             </div>
           </div>
         </div>
@@ -858,57 +1074,13 @@
   </div>
 </section>
 
-<!-- ═══════════════ PROBLEM ═══════════════ -->
-<section id="problem" class="section">
-  <div class="container">
-    <div class="problem-center fade-up">
-      <span class="eyebrow">The problem</span>
-      <h2>
-        You see the look you desire.<br>
-        <em style="font-style:italic; color:var(--mauve-dark)">But you can't wear it.</em>
-      </h2>
-      <div class="divider divider-center"></div>
-      <p class="problem-copy">
-        You buy the same products.<br>
-        You follow the same tutorial.<br>
-        But somehow… <strong>it still doesn't look right.</strong><br><br>
-        Because makeup isn't just what you use —<br>
-        it's how it works <strong>on your face.</strong><br><br>
-        And today, that part is missing.
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════ IMAGE STRIP ═══════════════ -->
-<div class="img-strip" aria-hidden="true">
-  <div class="img-strip-item">
-    <img
-      src="https://images.pexels.com/photos/2681751/pexels-photo-2681751.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
-      alt="Editorial beauty portrait"
-      loading="lazy">
-  </div>
-  <div class="img-strip-item">
-    <img
-      src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
-      alt="Luxury lip gloss collection"
-      loading="lazy">
-  </div>
-  <div class="img-strip-item">
-    <img
-      src="https://images.pexels.com/photos/2681753/pexels-photo-2681753.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=800&h=600&dpr=2"
-      alt="Glamour editorial portrait"
-      loading="lazy">
-  </div>
-</div>
-
 <!-- ═══════════════ SOLUTION ═══════════════ -->
 <section id="solution" class="section">
   <div class="container">
     <div class="solution-grid">
 
       <div class="fade-up">
-        <span class="eyebrow">The solution</span>
+        <p style="font-size:0.92rem; color:var(--mauve); margin-bottom:18px; letter-spacing:0.03em;">You see the look you want — but tutorials aren't made for your face.</p>
         <h2 style="color:var(--ivory)">Meet iYOUnic</h2>
         <div class="divider"></div>
         <p>iYOUnic turns beauty inspiration into a personalized, guided experience. Using your camera, you can:</p>
@@ -974,41 +1146,59 @@
   <div class="container">
     <div class="section-header fade-up">
       <span class="eyebrow">How it works</span>
-      <h2>Three steps to your look</h2>
+      <h2>From inspiration to your finished look</h2>
       <div class="divider divider-center"></div>
-      <p>From inspiration to execution — effortlessly.</p>
+      <p>Four simple steps — powered by AI, guided in real time.</p>
     </div>
-    <div class="steps-grid">
-      <div class="step-card fade-up">
-        <img
-          src="https://images.pexels.com/photos/3373744/pexels-photo-3373744.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
-          alt="Discover looks — lip color swatches"
-          class="step-img"
-          loading="lazy">
-        <div class="step-num">01</div>
+
+    <div class="how-steps">
+
+      <!-- ── Step 1: Discover ── -->
+      <div class="how-step fade-up">
+        <div class="how-phones dual">
+          <img src="hw1.png" class="hw-phone" alt="Discover looks" loading="lazy">
+          <img src="hw2.png" class="hw-phone" alt="Browse and select" loading="lazy">
+        </div>
+        <div class="how-node"><div class="how-node-dot"></div></div>
+        <div class="how-step-num">Step 01</div>
         <h3>Discover</h3>
-        <p>Browse creator-inspired looks and try them on your face in real time. See exactly what works for you — before you commit to anything.</p>
+        <p>Browse trending looks and try them on your face in real time. See what works <em>before</em> you commit.</p>
       </div>
-      <div class="step-card fade-up" style="transition-delay:0.1s">
-        <img
-          src="https://images.pexels.com/photos/3373743/pexels-photo-3373743.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
-          alt="Personalized to your features"
-          class="step-img"
-          loading="lazy">
-        <div class="step-num">02</div>
+
+      <!-- ── Step 2: Personalize ── -->
+      <div class="how-step fade-up" style="transition-delay:0.1s">
+        <div class="how-phones single">
+          <img src="hw3.png" class="hw-phone" alt="Personalized product list" loading="lazy">
+        </div>
+        <div class="how-node"><div class="how-node-dot"></div></div>
+        <div class="how-step-num">Step 02</div>
         <h3>Personalize</h3>
-        <p>Receive product recommendations and techniques tailored to your unique features, skin type, and experience level.</p>
+        <p>Get product recommendations and techniques matched to your face, skin tone, and skill level.</p>
       </div>
-      <div class="step-card fade-up" style="transition-delay:0.2s">
-        <img
-          src="https://images.pexels.com/photos/3373738/pexels-photo-3373738.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=700&h=400&dpr=2"
-          alt="Luxury makeup products"
-          class="step-img"
-          loading="lazy">
-        <div class="step-num">03</div>
+
+      <!-- ── Step 3: Execute ── -->
+      <div class="how-step fade-up" style="transition-delay:0.2s">
+        <div class="how-phones dual">
+          <img src="hw4.png" class="hw-phone" alt="Step-by-step guidance" loading="lazy">
+          <img src="hw5.png" class="hw-phone" alt="Real-time coaching" loading="lazy">
+        </div>
+        <div class="how-node"><div class="how-node-dot"></div></div>
+        <div class="how-step-num">Step 03</div>
         <h3>Execute</h3>
-        <p>Follow adaptive, step-by-step guidance that adjusts in real time as you work. No more guessing. Just results.</p>
+        <p>Follow adaptive, real-time guidance step by step — with AR overlays showing exactly where and how to apply.</p>
       </div>
+
+      <!-- ── Step 4: Result ── -->
+      <div class="how-step fade-up" style="transition-delay:0.3s">
+        <div class="how-phones single">
+          <img src="hw6.png" class="hw-phone" alt="Your finished look" loading="lazy">
+        </div>
+        <div class="how-node"><div class="how-node-dot"></div></div>
+        <div class="how-step-num">Step 04</div>
+        <h3>Result</h3>
+        <p>Your look — achieved. Save it, share it, or explore what's next. iYOUnic grows with you.</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -1196,9 +1386,71 @@
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
       const t = document.querySelector(a.getAttribute('href'));
-      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      if (t) { e.preventDefault(); closeDrawer(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+
+  // ── Hamburger menu ──────────────────────────────────────────
+  const hamburger  = document.getElementById('hamburger');
+  const navDrawer  = document.getElementById('nav-drawer');
+  const navOverlay = document.getElementById('nav-overlay');
+
+  function openDrawer() {
+    hamburger.classList.add('open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    navDrawer.classList.add('open');
+    navDrawer.setAttribute('aria-hidden', 'false');
+    navOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+    navDrawer.classList.remove('open');
+    navDrawer.setAttribute('aria-hidden', 'true');
+    navOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  navOverlay.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  // ── Phone slideshow ──────────────────────────────────────────
+  const slides   = document.querySelectorAll('.phone-slide');
+  const dots     = document.querySelectorAll('.slide-dot');
+  const badge    = document.getElementById('slide-badge');
+  const stepText = document.getElementById('chip-step-text');
+  const stepLabel= document.getElementById('chip-step-label');
+
+  const slideData = [
+    { badge: 'Before',  label: 'Starting point',  step: 'Natural face — ready to begin' },
+    { badge: 'During',  label: 'iYOUnic Guide',    step: 'Step 3 — Blend contour' },
+    { badge: 'After',   label: 'Look complete ✦',  step: 'Soft Glam — achieved' },
+  ];
+
+  let currentSlide = 0;
+
+  function goToSlide(index) {
+    slides[currentSlide].classList.remove('active');
+    dots[currentSlide].classList.remove('active');
+    currentSlide = index;
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+    badge.textContent    = slideData[currentSlide].badge;
+    stepLabel.textContent = slideData[currentSlide].label;
+    stepText.textContent  = slideData[currentSlide].step;
+  }
+
+  // Auto-advance every 3 seconds
+  setInterval(() => {
+    goToSlide((currentSlide + 1) % slides.length);
+  }, 3000);
+
+  // Dot click to jump
+  dots.forEach((dot, i) => dot.addEventListener('click', () => goToSlide(i)));
 </script>
 
 </body>
